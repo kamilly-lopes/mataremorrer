@@ -7,10 +7,11 @@ margin-top: 2%;
 
 #menu{
     background-color: rgb(134, 34, 34);
+    min-height: 10%;
 }
 ul {
     width:100%; 
-    float:top; 
+    float:right; 
     text-align:center; 
 }
 li {
