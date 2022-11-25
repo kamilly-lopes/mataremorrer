@@ -1,88 +1,140 @@
-var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
-var alternativa = [
- {
-	 alternative: "Quantas pessoas foram mortas segundo Pedrinho Matador?",
-	 a: "42",
-	 b: "100",
-	 c: "78",
-	 answer: "b"
-   },
- {
-     alternative: "Que época houve o renascimento?"
-     a: "Entre meados do século XIX e o fim do século XX",
-     b: "Entre meados do século XIV e o fim do século XVI",
-     c: "Entre meados do século XX e o fim do século XXI",
-     answer: "B"	 
-   },
- {
-     alternativa: "Onde foi considerado o berço do renascimento?"
-     a: "França nas cidades de Paris, Marselha e Estrasburgo",
-     b: "Inglaterra nas cidades de Londres,Manchester e Liverpool",
-     c: ": Itália nas cidades de Gênova, Florença e Veneza"
-	 answer: "C"
-   },	
- {
-     alternativa: "Quais destas são características renascentistas?"
-     a: "Racionalismo, antropocentrismo, individualismo",
-     b: "Racionalismo, teocentrismo, individualismo",
-     c: "Empirismo, antropocentrismo, individualismo",
-     answer: "A"
-   },
- {
-     alternativa: "Qual a definição de mecenas?"
-     a: "Centros de atividades artísticas da Europa Medieval",
-     b: " Homens afortunados que patrocinavam os artistas e suas atividades culturais",
-     c: "Cantigas onde o eu lírico é sempre uma voz masculina",
-     answer: "B"
-    },	 
- {
-	  alternativa: "Qual das opções abaixo têm três artistas do renascimento?",
-      a: "Leonardo da Vinci, Donatello, Claude Monet",
-      b: "Sandro Botticelli, Vincent Van Gogh, Caravaggio",
-      c: "Michelangelo, Leonardo da Vinci, Rafael",
-      answer: "C"
-    },
-  {
-	  alternativa: "Levando em consideração que Leonardo da Vinci foi um artista muito polêmico. <br></br> Qual desses motivos fez com que a obra A Última Ceia tenha sido muito polêmico e ter sofrido censura da igreja?",
-      a: "A representação de Jesus e Maria Madalena estarem supostamente casado",
-      b: "O seu tamanho extremamente grande",
-      c: "A paleta de cores utilizada para pintar o cenário",
-      answer: "A"
-    },
-  {
-	 alternativa: "Qual movimento artístico sucede o classicismo?"
-	 a: "Arte gótica",
-	 b:"Neoclassicimo",
-	 c: "Arte barroca",
-	 answer: "C"
-    },
-  {
-     alternativa: "Leonardo da Vinci foi um homem com muitos conhecimentos, qual das opções abaixo foram profissões que ele NÃO exerceu?",
-     a: "Matemático",
-     b: "Botãnico",
-     c: "Costureiro",
-     answer: "C"	 
-  {	
-     alternativa: "O Nascimento de Vênus é uma obra renascentista de qual artista?",
-	 a: "Leonardo da Vinci",
-	 b: "Sandro Botticelli",
-	 c: "Donatello",
-	 answer: "B"
-	
-];  
 
-	function get(x) {
-	return document.getElementById(x);
+const Questions = [{
+    id: 0,
+    q: "Quantas pessoas Pedrinho matou?",
+    a: [{ text: "42", isCorrect: false },
+        { text: "100", isCorrect: true },
+        { text: "78", isCorrect: false },
+        { text: "10", isCorrect: false }
+    ]
+
+},
+{
+    id: 1,
+    q: "What is the capital of Thailand?",
+    a: [{ text: "Lampang", isCorrect: false, isSelected: false },
+        { text: "phuket", isCorrect: false },
+        { text: "Ayutthaya", isCorrect: false },
+        { text: "Bangkok", isCorrect: true }
+    ]
+
+},
+{
+    id: 2,
+    q: "What is the capital of Gujarat",
+    a: [{ text: "surat", isCorrect: false },
+        { text: "vadodara", isCorrect: false },
+        { text: "gandhinagar", isCorrect: true },
+        { text: "rajkot", isCorrect: false }
+    ]
+
 }
 
-function renderQuestion(){
-  test = get("test");
-  if(pos >= alternativa.length){
-  test.innerHTML = "<h2>You got "+correct+" of "+alternativa.length+" alternativa correta </h2>"; 
-  get ("test_status").innerHTML = "Test completed";
+]
+
+// Set start
+var start = true;
+
+// Iterate
+function iterate(id) {
+
+// Getting the result display section
+var result = document.getElementsByClassName("result");
+result[0].innerText = "";
+
+// Getting the question
+const question = document.getElementById("question");
 
 
-pos = 0;
-correct = 0;
+// Setting the question text
+question.innerText = Questions[id].q;
 
-return false;  
+// Getting the options
+const op1 = document.getElementById('op1');
+const op2 = document.getElementById('op2');
+const op3 = document.getElementById('op3');
+const op4 = document.getElementById('op4');
+
+
+// Providing option text 
+op1.innerText = Questions[id].a[0].text;
+op2.innerText = Questions[id].a[1].text;
+op3.innerText = Questions[id].a[2].text;
+op4.innerText = Questions[id].a[3].text;
+
+// Providing the true or false value to the options
+op1.value = Questions[id].a[0].isCorrect;
+op2.value = Questions[id].a[1].isCorrect;
+op3.value = Questions[id].a[2].isCorrect;
+op4.value = Questions[id].a[3].isCorrect;
+
+var selected = "";
+
+// Show selection for op1
+op1.addEventListener("click", () => {
+    op1.style.backgroundColor = "lightgoldenrodyellow";
+    op2.style.backgroundColor = "lightskyblue";
+    op3.style.backgroundColor = "lightskyblue";
+    op4.style.backgroundColor = "lightskyblue";
+    selected = op1.value;
+})
+
+// Show selection for op2
+op2.addEventListener("click", () => {
+    op1.style.backgroundColor = "lightskyblue";
+    op2.style.backgroundColor = "lightgoldenrodyellow";
+    op3.style.backgroundColor = "lightskyblue";
+    op4.style.backgroundColor = "lightskyblue";
+    selected = op2.value;
+})
+
+// Show selection for op3
+op3.addEventListener("click", () => {
+    op1.style.backgroundColor = "lightskyblue";
+    op2.style.backgroundColor = "lightskyblue";
+    op3.style.backgroundColor = "lightgoldenrodyellow";
+    op4.style.backgroundColor = "lightskyblue";
+    selected = op3.value;
+})
+
+// Show selection for op4
+op4.addEventListener("click", () => {
+    op1.style.backgroundColor = "lightskyblue";
+    op2.style.backgroundColor = "lightskyblue";
+    op3.style.backgroundColor = "lightskyblue";
+    op4.style.backgroundColor = "lightgoldenrodyellow";
+    selected = op4.value;
+})
+
+// Grabbing the evaluate button
+const evaluate = document.getElementsByClassName("evaluate");
+
+// Evaluate method
+evaluate[0].addEventListener("click", () => {
+    if (selected == "true") {
+        result[0].innerHTML = "True";
+        result[0].style.color = "green";
+    } else {
+        result[0].innerHTML = "False";
+        result[0].style.color = "red";
+    }
+})
+}
+
+if (start) {
+iterate("0");
+}
+
+// Next button and method
+const next = document.getElementsByClassName('next')[0];
+var id = 0;
+
+next.addEventListener("click", () => {
+start = false;
+if (id < 2) {
+    id++;
+    iterate(id);
+    console.log(id);
+}
+
+})
