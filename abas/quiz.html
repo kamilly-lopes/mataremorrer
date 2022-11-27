@@ -1,0 +1,56 @@
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <title>Matar e Morrer</title>
+    <link rel="stylesheet" href="testequiz.css" />
+</head>
+<body>
+
+    <nav class="menu">
+        <h1 class="titulo"> Matar e Morrer</h1>
+            
+        <a href="quiz.html" class="amenu">QUIZ</a> 
+        <a href="estr.html" class="amenu">Estrangeiro</a>
+        <a href="bra.html" class="amenu">Brasil</a>
+        <a href="../index.html" class="amenu">Home</a>
+    
+    </nav><br><br><br><br>
+
+    <main class="tela-principal">
+    
+        
+        <section class='conteudos'>
+
+            <h2 id="titulo2">Quiz</h2>
+
+            <article class='centro' id='instrucoes'>
+                Leia a questão e clique na resposta correta
+            </article>
+
+            <article class='questoes'>
+                
+                <header class='questao'>
+                    <span id='numQuestao'></span>
+                    <h3 id='pergunta'></h3>
+                </header>
+
+                <div class='corpo'>
+                    <ol type='A' id='alternativas'>
+                        <li id='a' value='1A' class='respostas' onClick='verificarSeAcertou(this, this)'></li>
+                        <li id='b' value='1B' class='respostas' onClick='verificarSeAcertou(this, this)'></li>
+                        <li id='c' value='1C' class='respostas' onClick='verificarSeAcertou(this, this)'></li>
+                    </ol>
+                </div>
+            </article>
+            
+            <article id='aviso'>Questão <span id='numero'></span> de <span id='total'></span></article>
+            
+        </section>
+
+    </main>
+
+<script src="testequiz.js"></script>
+
+</body>
+</html>
